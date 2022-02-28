@@ -23,7 +23,7 @@ class App
 
     @wallet = Wallet.new(money)
     if @wallet.validate_money(money)
-      puts "Your Balance is now #{@wallet.current_bal}"
+      puts "Your Balance is now $#{@wallet.current_bal}"
     @user = User.new(f_name)
     end
     game_menu
