@@ -1,4 +1,4 @@
-require_relative 'Wallet.rb'
+# require_relative 'Wallet.rb'
 require_relative 'User.rb'
 require_relative 'Blackjack.rb'
 require_relative 'Roulette.rb'
@@ -12,20 +12,19 @@ class App
   end
 
   def welcome_menu
-    puts "Welcome to the Casino"
+    puts "--- Welcome to the Casino ---"
   end
 
   def create_user
     puts "What is your first name?"
     f_name = gets.strip
-    puts "How much money would you like to use?"
+    puts "Hi #{f_name}! How much money would you like to use?"
     money = gets.strip.to_f
+    @user = User.new(f_name, money)
+    # @wallet = Wallet.new(money)
 
-    @wallet = Wallet.new(money)
-    if @wallet.validate_money(money)
-      puts "Your Balance is now $#{@wallet.current_bal}"
-    @user = User.new(f_name)
-    end
+    puts "Your Balance is now $#{@user.current_bal}"
+    
     game_menu
   end
 
@@ -41,10 +40,10 @@ class App
       game_menu
     elsif menu_choice == 2
       Roulette.new(@user)
-      
+      game_menu
     elsif menu_choice == 3
-        puts "#{@wallet.current_bal}"
-        game_menu
+      puts "You're balance is $#{@user.current_bal}"
+      game_menu
     elsif menu_choice == 4
       "See you next time"
       exit
